@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Taseer Arman — Celebrity Style Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#05060a;
+      --accent:#ff6b6b;
+      --accent2:#7c3aed;
+      --glass: rgba(255,255,255,0.04);
+      --muted:rgba(230,238,246,0.7);
+      --radius:18px;
+      --maxw:1150px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:#e6eef6; -webkit-font-smoothing:antialiased}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* Layout container */
+    .container{max-width:var(--maxw); margin:0 auto; padding:24px;}
+
+    /* NAV */
+    nav{
+      position:fixed; left:0; right:0; top:18px; z-index:50;
+      display:flex; justify-content:center; pointer-events:none;
+    }
+    .nav-inner{
+      width:95%; max-width:var(--maxw);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:10px 18px; border-radius:14px; display:flex; align-items:center; justify-content:space-between;
+      box-shadow:0 8px 30px rgba(2,6,23,0.6); backdrop-filter:blur(8px);
+      pointer-events:auto;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{
+      width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#071426; font-weight:700; font-family:'Playfair Display',serif;
+      box-shadow:0 8px 30px rgba(124,58,237,0.12);
+    }
+    .brand h3{margin:0; font-size:16px}
+    .brand p{margin:0; font-size:12px; color:var(--muted)}
+
+    .nav-links{display:flex; gap:12px; align-items:center}
+    .nav-links a{padding:8px 12px; border-radius:10px; color:var(--muted); font-weight:600}
+    .nav-links a:hover{background:rgba(255,255,255,0.02); color:#fff}
+
+    /* HERO */
+    .hero{
+      min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative;
+      background-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1502920917128-1aa500764b1c?auto=format&fit=crop&w=2000&q=60');
+      background-size:cover; background-position:center; padding:120px 20px 60px;
+    }
+    .hero-overlay{
+      position:absolute; inset:0; background:linear-gradient(90deg, rgba(6,182,212,0.04), rgba(124,58,237,0.03)); mix-blend-mode:overlay; pointer-events:none;
+    }
+
+    .hero-inner{max-width:var(--maxw); width:100%; display:grid; grid-template-columns:1fr 360px; gap:28px; align-items:center;}
+    .hero-left{padding:24px}
+    .eyebrow{color:var(--muted); font-weight:600; margin-bottom:14px; letter-spacing:1px}
+    h1{
+      font-family:'Playfair Display', serif; font-size:48px; margin:0 0 12px; color:#fff; line-height:1.02;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    }
+    h1 .accent{background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    p.lead{color:var(--muted); font-size:18px; margin:0 0 18px; max-width:680px}
+
+    .hero-cta{display:flex; gap:12px; margin-top:10px}
+    .btn{
+      padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer; border:none; display:inline-block;
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#071426}
+    .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted)}
+
+    /* PROFILE CARD */
+    .profile{
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:18px; padding:18px; box-shadow:0 12px 40px rgba(2,6,23,0.6); text-align:center;
+      backdrop-filter: blur(8px);
+    }
+    .profile .pic{width:200px; height:200px; margin:0 auto 12px; border-radius:14px; overflow:hidden; border:4px solid rgba(255,255,255,0.04)}
+    .profile .pic img{width:100%; height:100%; object-fit:cover; display:block}
+    .profile h2{margin:8px 0 4px; font-family:'Playfair Display', serif; font-size:22px}
+    .profile p.role{margin:0 0 12px; color:var(--muted); font-weight:600}
+    .profile .info{display:flex; gap:8px; justify-content:center; color:var(--muted); font-size:14px; margin-bottom:12px}
+    .socials{display:flex; gap:10px; justify-content:center; margin-top:8px}
+    .socials a{padding:8px 10px; border-radius:10px; background:rgba(255,255,255,0.02); color:var(--muted); font-weight:600}
+
+    /* SECTIONS */
+    section{padding:60px 20px; max-width:var(--maxw); margin:0 auto}
+    .section-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:18px; box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+    .skill{
+      padding:14px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      text-align:center; font-weight:700; color:var(--muted);
+    }
+    .project{
+      padding:14px; border-radius:12px; background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+    .project h4{margin:0 0 6px; color:var(--accent)}
+
+    /* CONTACT */
+    .contact-grid{display:grid; grid-template-columns:1fr 360px; gap:20px}
+    .contact-form input, .contact-form textarea{
+      width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:#e6eef6;
+    }
+    .contact-form button{padding:12px 16px; border-radius:12px; border:none; background:linear-gradient(90deg,var(--accent),var(--accent2)); font-weight:700; cursor:pointer}
+
+    /* FOOTER */
+    footer{padding:30px 20px; text-align:center; color:var(--muted)}
+
+    /* ANIMATIONS */
+    .fade-up{opacity:0; transform:translateY(12px); animation:fadeUp .7s forwards}
+    .fade-up.delay{animation-delay:.12s}
+    @keyframes fadeUp{to{opacity:1; transform:none}}
+
+    /* RESPONSIVE */
+    @media (max-width:1000px){
+      .hero-inner{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      .nav-links{display:none}
+      h1{font-size:34px}
+      .profile .pic{width:160px;height:160px}
+      .grid-3{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner container" role="navigation" aria-label="Main">
+      <div class="brand" aria-hidden="false">
+        <div class="logo">TA</div>
+        <div>
+          <h3>Taseer Arman</h3>
+          <p>Computer Science Student</p>
+        </div>
+      </div>
+
+      <div class="nav-links" aria-hidden="true">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner container">
+      <div class="hero-left fade-up">
+        <div class="eyebrow">Professional / Premium Portfolio</div>
+        <h1>Hello, I'm <span class="accent">Taseer Arman</span></h1>
+        <p class="lead">BSCS Student • Web Developer • Security Enthusiast. I create beautiful, responsive, and high-impact digital experiences.</p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-ghost">Contact Me</a>
+        </div>
+
+        <div style="margin-top:18px; color:var(--muted); font-size:14px">
+          📍 Garband, Pakistan • 📧 <b>taseerarman208@gmail.com</b> • 📞 <b>03438258463</b>
+        </div>
+      </div>
+
+      <aside class="profile fade-up delay" aria-labelledby="profile-name">
+        <div class="pic">
+          <img src="taseerphoto.jpg" alt="Taseer Arman Photo">
+
+
+        </div>
+        <h2 id="profile-name">Taseer Arman</h2>
+        <p class="role">Computer Science Student</p>
+
+        <div class="info">
+          <div>🎓 BSCS</div>
+          <div>💻 Web & Game Ideas</div>
+        </div>
+
+        <div class="socials">
+          <a href="#" aria-label="GitHub">GitHub</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="fade-up">
+    <div class="container section-card">
+      <h2>About</h2>
+      <p style="color:var(--muted); margin-top:8px;">
+        My name is <strong>Taseer Arman</strong>. I am a Computer Science student with a keen interest in web development, programming, and cybersecurity.
+        I enjoy creating projects that are practical and beneficial. My goal is to grow as a professional developer and contribute to meaningful projects.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="fade-up delay">
+    <div class="container section-card" style="margin-top:18px">
+      <h2>Skills</h2>
+      <div class="grid-3" style="margin-top:14px">
+        <div class="skill">HTML & CSS (Responsive)</div>
+        <div class="skill">JavaScript (DOM, ES6)</div>
+        <div class="skill">C++ & Python</div>
+        <div class="skill">Unity (Game Ideas)</div>
+        <div class="skill">Kali Linux (Basics)</div>
+        <div class="skill">Git & GitHub</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="fade-up">
+    <div class="container section-card" style="margin-top:18px">
+      <h2>Projects</h2>
+      <div style="margin-top:12px" class="grid-3">
+        <div class="project">
+          <h4>Aviator-like Game</h4>
+          <p style="color:var(--muted)">Unity-based game inspired by Aviator — simple flying mechanic and scoring. (Under development)</p>
+        </div>
+        <div class="project">
+          <h4>Garband Local App</h4>
+          <p style="color:var(--muted)">An app to promote local services, culture, and businesses of Garband village.</p>
+        </div>
+        <div class="project">
+          <h4>Personal Website</h4>
+          <p style="color:var(--muted)">This celebrity-style portfolio itself — modern, responsive, and premium-looking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="fade-up delay">
+    <div class="container section-card" style="margin-top:18px">
+      <h2>Contact</h2>
+      <div class="contact-grid" style="margin-top:12px">
+        <div class="contact-form">
+          <form onsubmit="submitDemo(event)">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <div style="display:flex; gap:10px; align-items:center">
+              <button type="submit">Send Message</button>
+              <div id="formStatus" style="color:var(--muted)"></div>
+            </div>
+          </form>
+        </div>
+
+        <aside style="padding:18px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);">
+          <h3>Direct Contact</h3>
+          <p style="color:var(--muted); margin:8px 0">📧 <strong>taseerarman208@gmail.com</strong></p>
+          <p style="color:var(--muted); margin:8px 0">📞 <strong>03438258463</strong></p>
+          <p style="color:var(--muted); margin:8px 0">📍 Garband, Pakistan</p>
+
+          <div style="margin-top:12px">
+            <a class="btn btn-primary" href="mailto:taseerarman208@gmail.com">Email Now</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="max-width:var(--maxw)">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap">
+        <div style="font-weight:700">Taseer Arman</div>
+        <div style="color:var(--muted)">© <span id="yr"></span> All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href = a.getAttribute('href');
+        if(href && href.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    // demo contact submit
+    function submitDemo(e){
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Sending...';
+      setTimeout(()=>{
+        status.textContent = 'Message sent successfully (demo).';
+        e.target.reset();
+      },900);
+    }
+
+    // small entrance animation trigger on load (already handled by CSS animation classes)
+    window.addEventListener('load', ()=> {
+      document.querySelectorAll('.fade-up').forEach((el,i)=>{
+        el.style.animationDelay = (i*0.08)+'s';
+      });
+    });
+  </script>
+</body>
+</html>  
